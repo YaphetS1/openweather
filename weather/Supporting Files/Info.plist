@@ -69,5 +69,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Пожалуйста разрешите этому приложению использовать службы геолокации.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Пожалуйста разрешите этому приложению использовать службы геолокации.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

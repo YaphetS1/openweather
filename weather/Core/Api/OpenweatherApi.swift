@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Api {
     
@@ -22,7 +23,7 @@ extension Api {
         // 1 route
         let route = OpenweatherRouter.getWeather(coordinate: coordinate)
         
-        session.dataTask(with: route.asURLRequest()) { data, URLResponse, requestError in
+        getData(from: route.asURLRequest()) { data, URLResponse, requestError in
             guard let data = data else {
                 if let _ = requestError {
                     completion(.failure(.requestFailed))
@@ -39,6 +40,19 @@ extension Api {
             } catch {
                 completion(.failure(.serializationFailed))
             }
-        }.resume()
+        }
+    }
+}
+
+
+extension UIImageView {
+    
+    func downloadImage(from url: URL) {
+        Api.instance.getData(from: url) { [weak self] data, response, error in
+            guard let data = data, error == nil else { return }
+            DispatchQueue.main.async {
+                self?.image = UIImage(data: data)
+            }
+        }
     }
 }
